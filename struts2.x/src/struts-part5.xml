@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+<!-- 该配置文件主要是为了验证数据标签而配置的Action -->
+	<package name="data" extends="struts-default">
+		<action name="tag1" class="com.action.TagAction">
+			<!-- 使用系统默认的拦截器 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<!-- 使用防刷新的token拦截器 -->
+			<interceptor-ref name="token"></interceptor-ref>
+			<!-- 定义重复提交转向的视图，该逻辑视图名必须是invalid.token -->
+			<result name="invalid.token">/struts2DataLabel_tag.jsp</result>
+			<result name="done">/struts2DataLabel_tag.jsp</result>
+		</action>
+		
+		<action name="tag2" class="com.action.TagAction" method="login"><!-- 指定login方法 -->
+			<result name="done">/struts2DataLabel_tag.jsp</result>
+		</action>
+		
+		<!-- 测试s:actionerror 和s:actionmessage标签 -->
+		<action name="msgerrors" class="com.action.MessageErrorAction">
+			<result name="success">/struts2notform_tag.jsp</result>
+		</action>
+	</package>
+</struts>

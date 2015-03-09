@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<!-- 指定 Struts 2配置文件的根元素 -->
+<struts>
+<!-- 配置struts2  -->
+	<!-- 指定全局国际化资源文件
+	<constant name="struts.custom.i18n.resources" value="mesg" /> -->
+	<!-- 指定国际化编码所使用的字符集 
+	<constant name="struts.i18n.encoding" value="UTF-8" />-->
+	
+	<!-- 所有的Action都应该放在package下 -->
+	<package name="mine" extends="struts-default" namespace="/mine">
+		<action name="login" class="com.action.LoginAction">
+		<!-- 定义三个逻辑视图与物理视图之间的关联映射 -->
+			<result name="input">/login.jsp</result>
+			<result name="success">/welcome.jsp</result>
+			<result name="error">/error.jsp</result>
+			<!--执行login!register方法时调用(DMI) -->
+			<result name="register">/register.jsp</result>
+		</action>
+	</package>
+	
+	<!-- extends的值必须是另一个包的名称 -->
+	<package name="mine2" extends="struts-default" namespace="/mine2">
+		<action name="login2" class="com.action.LoginAction2" method="execute">
+		<!-- 定义三个逻辑视图与物理视图之间的关联映射 -->
+			<result name="success">/welcome.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<!-- 使用模式字符串定义Action的name,指定所有以Action结尾的请求，都可用此Action处理
+			method属性使用{1}，这个1代表模式匹配时第一个*多代替的字符
+		 -->
+		 <action name="*Action" class="com.action.LoginAction2" method="{1}">
+		 	<result name="success">/welcome.jsp</result>
+		 </action>
+	</package>
+	
+	<!-- 通过include引入其他配置文件 -->
+	<include file="struts-part2.xml"></include>
+	<!-- 异常 -->
+	<include file="struts-part3.xml"></include>
+	<!-- convention -->
+	<include file="struts-part4.xml"></include>
+	<!-- 验证struts标签 -->
+	<include file="struts-part5.xml"></include>
+	<!-- 第四章深入struts2 -->
+	<include file="struts-part6.xml"></include>
+	<include file="struts-part7.xml"></include>
+</struts>

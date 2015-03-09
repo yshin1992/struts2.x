@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- Action的搜索与映射约定 -->
+	<!-- 使用Convention插件(导入convention的jar包) 规则:约定优于配置 详细参见 P228 轻量级JAVA_EE企业应用实战 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" /><!-- Web运用编码 -->
+	<constant name="struts.convention.result.path" value="/" /><!-- 搜索视图资源的路径 -->
+	<constant name="struts.convention.action.name.separator" value="_" /><!-- Action类名分隔符 -->
+	<constant name="struts.convention.classes.reload" value="true" /><!-- convention类重加载 -->
+	<constant name="struts.convention.action.suffix" value="Action" /><!-- Action后缀名 -->
+	<constant name="struts.action.extension" value="action,do,html,htm,php,aspx" /> <!-- Action扩展名 -->
+	<constant name="struts.convention.package.locators" value="action,actions" />       <!-- 搜索Action资源的包路径 -->
+</struts>

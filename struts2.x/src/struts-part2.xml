@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+	<package name="yours" extends="struts-default" namespace="yours">
+		<!-- 配置一个默认Action -->
+		 <default-action-ref name="login3"/>
+		<action name="login3" class="com.action.LoginAction2" method="execute">
+		<!-- 为success的逻辑视图配置Result,type属性指定结果类型-->
+			<result name="success" type="dispatcher">
+				<!-- 指定该逻辑视图实际对应的资源 (这种方式最为繁琐)-->
+				<param name="location">/welcome.jsp</param>
+			</result>
+			<result name="error">/error.jsp</result>
+		</action>
+	</package>
+	
+	<package name="resultType" extends="struts-default">
+		
+		<!-- 全局Result -->
+		<global-results>
+			<result name="success">/welcome_plain.jsp</result>
+		</global-results>
+		
+		<action name="login_default" class="com.action.LoginAction_RESULTTYPE">
+		<!-- 注意这里的action默认使用全局的result -->
+		</action>
+		
+		<!-- ResultType 为PlainText -->
+		<action name="login_plain" class="com.action.LoginAction_RESULTTYPE">
+			<result type="plainText">
+			<!-- 当resultType为plainText时，将会将welcome_plain.jsp页面的源码显示出来 -->
+				<param name="location">/welcome_plain.jsp</param>
+				<param name="charSet">UTF-8</param>
+			</result>
+		</action>
+		
+		<!-- ResultType 为Redirect(重定向) -->
+		<action name="login_redirect" class="com.action.LoginAction_RESULTTYPE">
+			<result type="redirect">/welcome_plain.jsp</result>
+		</action>
+		
+		<!-- ResultType 为RedirectAction(与redirect不同的是：redirectAction使用
+				ActionMapperFactory提供的ActionMapper来重定向请求) -->
+		<action name="login_redirectAction">
+			<result type="redirectAction">
+			<!-- 使用这种重定向的方式会将表单的数据全部丢失 -->
+				<param name="actionName">login</param>
+				<param name="nameSpace">/mine</param>
+			</result>
+		</action>
+	</package>
+</struts>

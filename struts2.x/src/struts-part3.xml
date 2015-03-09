@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- struts 2异常处理 -->
+	<package name="excpt" extends="struts-default">
+		<!-- 全局Result -->
+		<global-results>
+			<result name="sql">/exception.jsp</result>
+			<result name="root">/exception.jsp</result>
+		</global-results>
+		
+		<!-- 定义全局异常映射 -->
+		<global-exception-mappings>
+			<!-- 当Action中遇到SQLException异常时，系统将转入name为sql的结果中 -->
+			<exception-mapping result="sql" exception="java.sql.SQLException"></exception-mapping>
+			
+			<exception-mapping result="root" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+		
+		<action name="login_exception" class="com.action.LoginAction_EXCEPTION">
+			<!-- 定义局部异常 -->
+			<exception-mapping result="my" exception="com.exception.MyException"></exception-mapping>
+			<result name="my">/exception.jsp</result>
+			<result name="success">/welcome.jsp</result>
+		</action>
+	</package>
+</struts>

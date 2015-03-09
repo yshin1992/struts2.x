@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 该配置文件主要是用于对第四章 的内容 -->
+	<package name="convertor" extends="struts-default">
+		<action name="login_conver" class="com.action.LoginConvAction">
+			<result name="success">/welcome_conv.jsp</result>
+		</action>
+		<action name="login_convers" class="com.action.LoginConvsAction">
+			<result name="success">/welcome_conv.jsp</result>
+		</action>
+		<!-- 这里为了指定集合元素的类型，需要配置一个properties文件 -->
+		<action name="login_convers2" class="com.action.LoginConvs2Action">
+			<result name="success">/welcome_conv.jsp</result>
+		</action>
+		<!-- 这里通过自定义转换器将字符串转成Person类 -->
+		<action name="login_convers3" class="com.action.LoginConvs3Action">
+		<!-- 配置名为input的逻辑视图，当转换器出现错误时，转入此视图 -->
+			<result name="input">/welcome_plain.jsp</result>
+			<result name="success">/welcome_conv.jsp</result>
+		</action>
+		<!-- 使用自定义转换器将字符串转成set集合 -->
+		<action name="login_convers4" class="com.action.LoginConvsSetAction">
+			<!-- 配置名为input的逻辑视图，当转换器出现错误时，转入此视图 -->
+			<result name="input">/welcome_plain.jsp</result>
+			<result name="success">/welcome_conv.jsp</result>
+		</action>
+		
+		<!-- 使用了校验文件的表单 -->
+		<action name="register_validate" class="com.action.RegisterAction">
+			<!-- 配置名为input的逻辑视图，当转换器出现错误时，转入此视图 -->
+			<result name="input">/WEB-INF/content/s-convertor2.jsp</result>
+			<result name="success">/welcome_conv.jsp</result>
+		</action>
+		
+		<action name="new_validate" class="com.action.NewValidateAction">
+            <result name="input">/s-convertor2.jsp</result>
+			<result name="success">/s-convertor2.jsp</result>
+        </action>
+        
+        <!-- 指向WEB-INF/content下的jsp -->
+        <action name="validate_con" >
+			<result name="success">/WEB-INF/content/s-convertor2.jsp</result>
+        </action>
+        
+        <!-- 带有visitor校验规则的文件 -->
+        <action name="validate_vist" class="com.action.LoginVisitorAction">
+        	<result name="input">/WEB-INF/content/s-convertor2.jsp</result>
+			<result name="success">/WEB-INF/content/s-convertor2.jsp</result>
+        </action>
+	</package>
+</struts>

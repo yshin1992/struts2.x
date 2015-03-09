@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC  "-//Apache Struts//XWork Validator 1.0.2//EN"  "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+	<!-- 字段校验器配置风格 -->
+	<validators>
+		<!-- 校验Action中的name属性 -->
+		<field name="name">
+			<!-- 指定name必须满足必填规则 -->
+			<field-validator type="requiredstring" short-circuit="true"><!-- 短路校验 -->
+				<param name="trim">true</param>
+				<message key="requiredname"></message>
+			</field-validator>
+			<!-- <field-validator type="regex">
+				<param name="expression_r"><![CDATA[(\w{4,25})]]></param>
+				<message>您输入的用户名只能是字母和数字，且长度必须在4-25之间</message>
+			</field-validator>-->
+			<field-validator type="stringlength">
+				<param name="minLength">4</param>
+				<param name="maxLength">25</param>
+				<message key="requiredlength"></message>
+			</field-validator>
+		</field>
+	
+		<field name="pass">
+			<!-- 指定name必须满足必填规则 -->
+			<field-validator type="requiredstring">
+				<param name="trim">true</param>
+				<message>必须输入密码</message>
+			</field-validator>
+			<!--<field-validator type="regex">
+				<param name="expression_r"><![CDATA[(\w{4,25})]]></param>
+				<message>您输入的用户名只能是字母和数字，且长度必须在4-25之间</message>
+			</field-validator>  -->
+			<field-validator type="stringlength">
+				<param name="trim">true</param>
+				<param name="minLength">4</param>
+				<param name="maxLength">25</param>
+				<message key="requiredlength"></message>
+			</field-validator>
+		</field>
+	
+		<field name="age">
+			<!-- 指定name必须满足必填规则 -->
+			<field-validator type="int">
+				<param name="min">1</param>
+				<param name="max">150</param>
+				<message>年龄必须在${min}和${max}之间</message>
+			</field-validator>
+		</field>
+		
+		<field name="birth">
+			<!-- 指定name必须满足必填规则 -->
+			<field-validator type="date">
+				<param name="min">1900-1-1</param>
+				<param name="max">2015-12-12</param>
+				<message>生日必须在${min}和${max}之间</message>
+			</field-validator>
+		</field>
+	</validators>
+
+	
+	<!-- 非字段校验器配置风格 -->
+	<!-- 
+	<validator type="requiredstring>
+		<param name="fieldName">name</param>
+		<param name="trim">true</param>
+		<message key="requiredname"/>
+	</validator>
+ -->
